@@ -1214,3 +1214,125 @@ section {
     align-items: center;
   }
 }
+
+@media (max-width: 900px) {
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .button-row {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  section {
+    padding: 56px 0;
+  }
+
+  .nav-inner {
+    padding: 14px 0;
+  }
+
+  .nav-logo {
+    font-size: 1rem;
+  }
+
+  .nav-logo img {
+    height: 32px;
+  }
+
+  .nav-cta {
+    padding: 8px 14px;
+  }
+
+  .lang-toggle {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .hero {
+    padding-top: 60px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+  .progress {
+    padding: 18px;
+  }
+
+  .progress-steps {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
+
+  .card-grid,
+  .trusted-logos {
+    grid-template-columns: 1fr;
+  }
+
+  .features {
+    gap: 20px;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .testimonial {
+    padding: 24px;
+  }
+
+  .testimonial::after {
+    font-size: 2.6rem;
+    right: 18px;
+  }
+
+  .contact-links {
+    gap: 12px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .case-images {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-modal-card {
+    padding: 24px;
+  }
+
+  .lang-modal-card {
+    padding: 24px;
+    transform: translateY(-40%);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .case-images {
+    grid-template-columns: 1fr;
+  }
+}

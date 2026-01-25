@@ -20,11 +20,12 @@ function App() {
     note: '',
   })
   const [formErrors, setFormErrors] = useState({})
+  const assetBase = import.meta.env.BASE_URL
+  const asset = (path) => `${assetBase}${path.replace(/^\//, '')}`
   const content = {
     zh: {
       brand: '中帆云联',
       navLinks: ['效率', '客户与痛点', '优势', '培训', '对比'],
-      contactCta: '联系我们',
       langToggle: 'EN',
       hero: {
         badge: '以AI探索未知，以定制重塑传统',
@@ -58,13 +59,13 @@ function App() {
           {
             title: 'Zon.AI Studio | AI创新与应用工作室',
             desc: '作为中帆云联旗下专注于前沿AI探索的核心部门，我们致力于将智能化为现实的驱动力。工作室聚焦智能体（Agent）开发与 “AI+”场景融合，提供从前瞻性解决方案设计到可落地原型孵化的全流程创新服务，助力客户在新浪潮中抢占智能先机。',
-            image: '/assets/zonai.png',
+            image: asset('assets/zonai.png'),
             alt: 'Zon.AI Studio',
           },
           {
             title: '数字引擎工作室 (Digital Engine Studio, DES)',
             desc: 'DES是我们为企业数字化转型提供深度定制的核心工程部门。我们以如加密算法般精密可靠、安全隐秘的匠心，为客户构建稳健、可扩展的专属数字系统。提供涵盖咨询、开发、交付与维护的一站式转型解决方案，是您值得托付的数字基石与成长引擎。',
-            image: '/assets/des.png',
+            image: asset('assets/des.png'),
             alt: 'Digital Engine Studio',
           },
         ],
@@ -208,7 +209,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case1.png'],
+                images: [asset('assets/case1.png')],
               },
               {
                 title: '项目案例二：游戏宣发素材智能生成平台 (Game Ad Creative AI Studio)',
@@ -241,7 +242,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case2.png', '/assets/case3.png', '/assets/case4.png', '/assets/case5.png'],
+                images: [asset('assets/case2.png'), asset('assets/case3.png'), asset('assets/case4.png'), asset('assets/case5.png')],
               },
             ],
           },
@@ -289,7 +290,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case6.png'],
+                images: [asset('assets/case6.png')],
               },
             ],
           },
@@ -333,7 +334,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case7.png', '/assets/case8.png'],
+                images: [asset('assets/case7.png'), asset('assets/case8.png')],
               },
             ],
           },
@@ -374,7 +375,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case9.png'],
+                images: [asset('assets/case9.png')],
               },
             ],
           },
@@ -416,7 +417,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case10.png'],
+                images: [asset('assets/case10.png')],
               },
               {
                 title: '项目案例二：“NutriSnap”智能视觉点餐与饮食分析交互原型设计',
@@ -447,7 +448,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case11.png'],
+                images: [asset('assets/case11.png')],
               },
             ],
           },
@@ -488,13 +489,12 @@ function App() {
     en: {
       brand: 'Zonfine Cloud',
       navLinks: ['Efficiency', 'Customers & Pain Points', 'Advantages', 'Training', 'Comparison'],
-      contactCta: 'Contact Us',
       langToggle: '中文',
       hero: {
         badge: 'Exploring the Unknown, Reshaping Tradition',
         title: '78% Efficiency Improvement',
         desc:
-          'Zonfine Cloud Tech (Shanghai) Co., Ltd. is committed to driving enterprise intelligent transformation and digital reshaping through dual engines of AI and customized software.',
+          'Zonfine Cloud Tech (Shanghai) Co., Ltd. empowers enterprise intelligent transformation and digital reshaping through AI and custom software.',
       },
       heroCard: {
         title: 'Core Business',
@@ -522,13 +522,13 @@ function App() {
           {
             title: 'Zon.AI Studio | AI Innovation & Application',
             desc: 'Zon.AI Studio focuses on Agent development and “AI+” scenario integration, offering end-to-end innovation services from forward-looking solution design to actionable prototype incubation, enabling clients to seize the lead in the new era of intelligence.',
-            image: '/assets/zonai.png',
+            image: asset('assets/zonai.png'),
             alt: 'Zon.AI Studio',
           },
           {
             title: 'Digital Engine Studio (DES)',
             desc: 'DES is our core engineering division for deeply customized digital transformation. With craftsmanship as precise and reliable as an encryption algorithm, we build robust, scalable digital systems and provide one-stop transformation solutions from consultation and development to delivery and maintenance.',
-            image: '/assets/des.png',
+            image: asset('assets/des.png'),
             alt: 'Digital Engine Studio',
           },
         ],
@@ -675,7 +675,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case1.png'],
+                images: [asset('assets/case1.png')],
               },
               {
                 title: 'Case 2: Game Ad Creative AI Studio',
@@ -706,7 +706,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case2.png', '/assets/case3.png', '/assets/case4.png', '/assets/case5.png'],
+                images: [asset('assets/case2.png'), asset('assets/case3.png'), asset('assets/case4.png'), asset('assets/case5.png')],
               },
             ],
           },
@@ -747,7 +747,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case6.png'],
+                images: [asset('assets/case6.png')],
               },
             ],
           },
@@ -790,7 +790,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case7.png', '/assets/case8.png'],
+                images: [asset('assets/case7.png'), asset('assets/case8.png')],
               },
             ],
           },
@@ -829,7 +829,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case9.png'],
+                images: [asset('assets/case9.png')],
               },
             ],
           },
@@ -870,7 +870,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case10.png'],
+                images: [asset('assets/case10.png')],
               },
               {
                 title: 'Case 2: “NutriSnap” Vision-based Ordering Prototype',
@@ -901,7 +901,7 @@ function App() {
                     ],
                   },
                 ],
-                images: ['/assets/case11.png'],
+                images: [asset('assets/case11.png')],
               },
             ],
           },
@@ -1143,8 +1143,8 @@ function App() {
               </button>
               <h3>{copy.infoModal.title}</h3>
               <div className="info-modal-logos" aria-label={copy.infoModal.logoRowAlt}>
-                <img src="/assets/zonfine_logo.png" alt="Zonfine Logo" />
-                <img src="/assets/zonfine_logo_sub.png" alt="Zonfine Logo Sub" />
+                <img src={asset('assets/zonfine_logo.png')} alt="Zonfine Logo" />
+                <img src={asset('assets/zonfine_logo_sub.png')} alt="Zonfine Logo Sub" />
               </div>
             </div>
             <div className="info-modal-body">
@@ -1400,7 +1400,7 @@ function App() {
       <header className="nav">
         <div className="container nav-inner">
           <div className="nav-logo">
-            <img src="/assets/3d_logo.png" alt="Zonfine Logo" />
+            <img src={asset('assets/3d_logo.png')} alt="Zonfine Logo" />
             {copy.brand}
           </div>
           <nav className="nav-links">
@@ -1511,7 +1511,7 @@ function App() {
               ))}
             </div>
             <div className="map-wrap">
-              <img src="/assets/map-placeholder.svg" alt={copy.mapAlt} />
+              <img src={asset('assets/map-placeholder.svg')} alt={copy.mapAlt} />
             </div>
           </div>
         </section>
@@ -1539,8 +1539,8 @@ function App() {
                 </button>
               </div>
               <div className="big-picture-logo">
-                <img src="/assets/zonfine_logo_sub.png" alt="中帆云联 Logo" />
-                <img src="/assets/3d_logo.png" alt="中帆云联 3D Logo" />
+                <img src={asset('assets/zonfine_logo_sub.png')} alt="中帆云联 Logo" />
+                <img src={asset('assets/3d_logo.png')} alt="中帆云联 3D Logo" />
               </div>
             </div>
           </div>
