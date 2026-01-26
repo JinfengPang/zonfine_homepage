@@ -11,6 +11,7 @@ function App() {
   const [isContactClosing, setIsContactClosing] = useState(false)
   const [confirmStage, setConfirmStage] = useState('verify')
   const [confirmCountdown, setConfirmCountdown] = useState(3)
+  const [submitError, setSubmitError] = useState('')
   const [formData, setFormData] = useState({
     role: '',
     demand: '',
@@ -944,21 +945,36 @@ function App() {
     },
   }
   const copy = content[lang]
+  const roleOptionsByLang = {
+    zh: ['学生', '个人', '企业', '政府机构或组织'],
+    en: ['Student', 'Individual', 'Enterprise', 'Government/Organization'],
+  }
+  const demandOptionsByLang = {
+    zh: [
+      '业务咨询-一般问题',
+      '业务咨询-合作畅谈',
+      '技术服务-定制化软件',
+      '技术服务-数字化转型',
+      '技术服务-AI升级',
+      '技术服务-技术培训及实践',
+    ],
+    en: [
+      'Business - General Inquiry',
+      'Business - Partnership',
+      'Tech Service - Custom Software',
+      'Tech Service - Digital Transformation',
+      'Tech Service - AI Upgrade',
+      'Tech Service - Training & Practice',
+    ],
+  }
   const formText = lang === 'zh'
     ? {
       title: '联系我们',
       roleLabel: '您的角色？',
-      roleOptions: ['学生', '个人', '企业', '政府机构或组织'],
+      roleOptions: roleOptionsByLang.zh,
       selectPlaceholder: '请选择',
       demandLabel: '您的需求？',
-      demandOptions: [
-        '业务咨询-一般问题',
-        '业务咨询-合作畅谈',
-        '技术服务-定制化软件',
-        '技术服务-数字化转型',
-        '技术服务-AI升级',
-        '技术服务-技术培训及实践',
-      ],
+      demandOptions: demandOptionsByLang.zh,
       nameLabel: '怎么称呼您？',
       namePlaceholder: 'X先生或Y女士',
       phoneLabel: '手机',
@@ -971,6 +987,7 @@ function App() {
       confirmTitle: '请检查信息是否正确',
       confirmButton: '确认',
       successMessage: '已成功提交，请静待佳音。',
+      submitError: '提交失败，请稍后再试或更换联系方式。',
       errors: {
         role: '请选择您的角色',
         demand: '请选择您的需求',
@@ -981,17 +998,10 @@ function App() {
     : {
       title: 'Contact Us',
       roleLabel: 'Your role',
-      roleOptions: ['Student', 'Individual', 'Enterprise', 'Government/Organization'],
+      roleOptions: roleOptionsByLang.en,
       selectPlaceholder: 'Please select',
       demandLabel: 'Your request',
-      demandOptions: [
-        'Business - General Inquiry',
-        'Business - Partnership',
-        'Tech Service - Custom Software',
-        'Tech Service - Digital Transformation',
-        'Tech Service - AI Upgrade',
-        'Tech Service - Training & Practice',
-      ],
+      demandOptions: demandOptionsByLang.en,
       nameLabel: 'How should we address you?',
       namePlaceholder: 'Mr. X or Ms. Y',
       phoneLabel: 'Phone',
@@ -1004,6 +1014,7 @@ function App() {
       confirmTitle: 'Please verify your information',
       confirmButton: 'Confirm',
       successMessage: 'Submitted successfully. Please wait for our response.',
+      submitError: 'Submission failed. Please try again later or use another contact method.',
       errors: {
         role: 'Please select your role',
         demand: 'Please select your request',
@@ -1078,8 +1089,52 @@ function App() {
     setShowConfirmModal(true)
   }
 
-  const handleConfirmSubmit = () => {
+  const normalizeRole = (value) => {
+    const map = {
+      学生: 'student',
+      个人: 'individual',
+      企业: 'enterprise',
+      政府机构或组织: 'government',
+      Student: 'student',
+      Individual: 'individual',
+      Enterprise: 'enterprise',
+      'Government/Organization': 'government',
+    }
+    if (!value) return ''
+    return map[value] || String(value).toLowerCase()
+  }
+
+  const normalizeRequest = (value) => {
+    if (!value) return ''
+    if (demandOptionsByLang.en.includes(value)) return value
+    const index = demandOptionsByLang.zh.indexOf(value)
+    if (index !== -1) return demandOptionsByLang.en[index]
+    return value
+  }
+
+  const handleConfirmSubmit = async () => {
     if (confirmStage === 'verify') {
+      setSubmitError('')
+      const payload = {
+        role: normalizeRole(formData.role),
+        request: normalizeRequest(formData.demand),
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        notes: formData.note.trim(),
+      }
+      try {
+        const response = await fetch('https://1grvudx1hi.execute-api.cn-northwest-1.amazonaws.com.cn/contactUs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`)
+      } catch (error) {
+        console.error('Contact submission failed', error)
+        setSubmitError(formText.submitError)
+        return
+      }
       setConfirmStage('success')
       setIsContactClosing(true)
       setTimeout(() => {
@@ -1094,7 +1149,9 @@ function App() {
   }
 
   const handleConfirmClose = () => {
+    setSubmitError('')
     setShowConfirmModal(false)
+    setSubmitError('')
   }
 
   return (
@@ -1383,6 +1440,9 @@ function App() {
                     ? `${formText.confirmButton} (${confirmCountdown}s)`
                     : formText.confirmButton}
                 </button>
+                {submitError && (
+                  <p className="field-error" role="alert">{submitError}</p>
+                )}
               </>
             ) : (
               <>
