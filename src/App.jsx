@@ -1124,7 +1124,7 @@ function App() {
         notes: formData.note.trim(),
       }
       try {
-        const response = await fetch('https://1grvudx1hi.execute-api.cn-northwest-1.amazonaws.com.cn/default/contactUs', {
+        const response = await fetch('https://wutpuj0hoh.execute-api.cn-northwest-1.amazonaws.com.cn/default/contactUs', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
