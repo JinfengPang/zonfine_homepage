@@ -1124,7 +1124,7 @@ function App() {
         notes: formData.note.trim(),
       }
       try {
-        const response = await fetch('https://fxqxtef390.execute-api.cn-northwest-1.amazonaws.com.cn/live/contactUs', {
+        const response = await fetch('https://fxqxtef390.execute-api.cn-northwest-1.amazonaws.com.cn/prod/contactUs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
